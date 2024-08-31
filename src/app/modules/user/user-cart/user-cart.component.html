@@ -1,0 +1,124 @@
+<app-user-navbar></app-user-navbar>
+<div class="container mx-auto mt-10 bg-white">
+  <div class="flex shadow-md my-10">
+    <div class="w-3/4 bg-gray-100 px-10 py-10">
+      <div class="flex justify-between border-b pb-8">
+        <h1 class="font-semibold text-2xl">Shopping Cart</h1>
+      </div>
+      <div class="flex mt-10 mb-5">
+        <h3 class="font-semibold text-gray-700 text-xs uppercase w-2/5">
+          Product Details
+        </h3>
+        <h3
+          class="font-semibold text-center text-gray-700 text-xs uppercase w-1/5"
+        >
+          Quantity
+        </h3>
+        <h3
+          class="font-semibold text-center text-gray-700 text-xs uppercase w-1/5"
+        >
+          Price
+        </h3>
+      </div>
+      <ng-container *ngFor="let product of setCart">
+        <div
+          class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5 relative"
+        >
+          <div class="flex w-2/5">
+            <div class="w-20">
+              <img
+                class="h-24"
+                [src]="'data:image/png;base64,' + product.img[0]"
+                alt="product"
+              />
+            </div>
+            <div class="flex flex-col justify-between ml-4 flex-grow">
+              <span class="font-bold text-sm">{{ product.productName }}</span>
+              <span class="text-red-500 text-xs">{{
+                product.productDesc
+              }}</span>
+              <span class="text-red-500 text-xs">{{
+                product.productTypeName
+              }}</span>
+            </div>
+          </div>
+          <div class="flex justify-center items-center w-1/5">
+            <button
+              class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-l-md border-r border-gray-300 w-10"
+              (click)="minusQty(product.id)"
+            >
+              -
+            </button>
+            <input
+              class="mx-2 border text-center w-10 h-10 bg-white text-gray-700"
+              readonly
+              [value]="product.qty"
+              type="text"
+            />
+            <button
+              class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-r-md border-l border-gray-300 w-10"
+              (click)="plusQty(product.id)"
+            >
+              +
+            </button>
+          </div>
+
+          <span class="text-center w-1/5 font-semibold text-sm">{{
+            product.price
+          }}</span>
+          <button
+            class="text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 rounded-full w-8 h-8 flex items-center justify-center transition-transform transform hover:scale-105"
+            (click)="onRemove(product.id)"
+          >
+            ✕
+          </button>
+        </div>
+      </ng-container>
+    </div>
+    <div id="summary" class="w-1/4 px-8 py-10">
+      <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+      <div class="flex justify-between mt-10 mb-5">
+        <span class="font-semibold text-sm">{{ Calculate }}</span>
+      </div>
+      <div>
+        <label class="font-medium inline-block mb-3 text-sm uppercase bg-white"
+          >Shipping</label
+        >
+        <select class="block p-2 text-gray-700 w-full text-sm bg-white">
+          <option>Standard shipping - $10.00</option>
+          <option>Express shipping - $20.00</option>
+        </select>
+      </div>
+      <div class="py-10">
+        <label
+          for="promo"
+          class="font-semibold inline-block mb-3 text-sm uppercase"
+          >โค้ดส่วนลด</label
+        >
+        <input
+          type="text"
+          id="promo"
+          placeholder="Enter your code"
+          class="p-2 text-sm w-full bg-white"
+        />
+      </div>
+      <button
+        class="bg-pink-500 hover:bg-pink-600 px-5 py-2 text-sm text-white uppercase"
+      >
+        Apply
+      </button>
+      <div class="border-t mt-8">
+        <div class="flex font-semibold justify-between py-6 text-sm uppercase">
+          <span>ยอดรวมทั้งสิ้น</span>
+          <span>{{ Calculate }}</span>
+        </div>
+        <button
+          class="bg-gray-800 font-semibold hover:bg-gray-900 py-3 text-sm text-white uppercase w-full"
+          (click)="onPayment()"
+        >
+          ชำระเงิน
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

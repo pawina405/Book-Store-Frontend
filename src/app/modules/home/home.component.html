@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<!-- Grid Section -->
+<section
+  id="Projects"
+  class="w-fit mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
+>
+  <!-- Product Cards -->
+  <ng-container *ngFor="let product of products">
+    <div
+      class="w-72 bg-gradient-to-t from-pink-200 via-gray-200 to-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+    >
+      <img
+        *ngIf="product.img.length"
+        [src]="'data:image/png;base64,' + product.img[0]"
+        alt="Product"
+        class="h-80 w-72 object-cover rounded-t-xl"
+      />
+      <div class="px-4 py-3 w-72">
+        <p class="text-lg font-bold text-black truncate block capitalize">
+          {{ product.productName }}
+        </p>
+        <span class="text-gray-600 mr-3 uppercase text-xs">{{
+          product.productDesc
+        }}</span>
+
+        <div class="flex items-center">
+          <p class="text-lg font-semibold text-black cursor-auto my-3">
+            {{ product.price }} บาท
+          </p>
+        </div>
+
+        <div class="flex flex-row justify-center gap-4 mt-4">
+          <button
+            (click)="addToCart(product)"
+            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-xl"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>

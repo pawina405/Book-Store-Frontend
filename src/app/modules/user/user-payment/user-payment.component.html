@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>หน้าชำระเงิน</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="max-w-4xl mx-auto py-12">
+      <h1 class="text-3xl font-bold text-gray-700 mb-8 text-center">
+        หน้าชำระเงิน
+      </h1>
+
+      <!-- ที่อยู่ของผู้ใช้ -->
+      <ng-container *ngIf="user">
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+          <h2 class="text-2xl font-semibold mb-4">ที่อยู่ของผู้ใช้</h2>
+          <p>{{ user.address }}</p>
+        </div>
+      </ng-container>
+      <!-- รายละเอียดสินค้าที่จะสั่งซื้อ -->
+      <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-2xl font-semibold mb-4">
+          รายละเอียดสินค้าที่จะสั่งซื้อ
+        </h2>
+        <ng-container *ngFor="let product of setCart">
+          <div class="flex mb-4">
+            <div class="w-20">
+              <img
+                class="h-24 w-24 object-cover"
+                [src]="'data:image/png;base64,' + product.img[0]"
+                alt="product"
+              />
+            </div>
+            <div class="ml-4 flex flex-col justify-between flex-grow">
+              <span class="font-bold text-sm">{{ product.productName }}</span>
+              <span class="text-gray-500 text-xs">{{
+                product.productDesc
+              }}</span>
+              <span class="text-gray-500 text-xs">{{
+                product.productTypeName
+              }}</span>
+              <span class="font-semibold text-sm text-right"
+                >${{ product.price }}</span
+              >
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- การจัดส่ง -->
+      <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-2xl font-semibold mb-4 bg-white">การจัดส่ง</h2>
+        <select class="w-full p-2 border border-gray-300 rounded-md bg-white">
+          <option>การจัดส่งแบบปกติ</option>
+          <option>การจัดส่งแบบด่วน</option>
+        </select>
+      </div>
+
+      <!-- วิธีการชำระเงิน -->
+      <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-2xl font-semibold mb-4 bg-white">วิธีการชำระเงิน</h2>
+        <select
+          class="w-full p-2 border border-gray-300 rounded-md mb-4 bg-white"
+          [(ngModel)]="paymentMethods"
+        >
+          <option value="OnlineBanking">โอนเงินผ่านธนาคาร</option>
+          <option value="QrCode">QR-CODE</option>
+        </select>
+
+        <div *ngIf="paymentMethods == 'OnlineBanking'" class="mb-4">
+          <div class="flex items-center">
+            <input
+              class="input input-md bg-white input-bordered flex-grow"
+              [value]="bankNumber"
+              readonly
+            />
+            <button class="btn bg-blue-500 text-white ml-2">KTB</button>
+          </div>
+        </div>
+        <div *ngIf="paymentMethods == 'QrCode'" class="mb-4">
+          <img [src]="qrcodelink" alt="QR Code" class="w-32 h-32 mx-auto" />
+        </div>
+        <div
+          *ngIf="
+            paymentMethods == 'OnlineBanking' || paymentMethods == 'QrCode'
+          "
+          class="mb-4"
+        >
+          <label class="block text-gray-700 mb-2" for="image"
+            >ส่งสลิปจ่ายเงินตรงนี้</label
+          >
+          <input
+            type="file"
+            class="file-input file-input-bordered file-input-error file-input-xs w-full bg-white"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+      </div>
+
+      <!-- ยอดชำระเงินทั้งหมดและปุ่มสั่งสินค้า -->
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-4">ยอดชำระเงินทั้งหมด</h2>
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-lg">ยอดรวม</span>
+          <span class="text-lg font-semibold">{{ Calculate }} บาท</span>
+        </div>
+        <button
+          (click)="onSubmit()"
+          class="w-full bg-pink-500 text-white p-3 rounded-md hover:bg-pink-600"
+        >
+          สั่งสินค้า
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

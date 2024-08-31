@@ -1,0 +1,59 @@
+<div class="p-4">
+  <div class="bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4">Edit Order</h2>
+    <form class="space-y-4" [formGroup]="formEditOrder">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Order ID</label>
+        <input
+          type="text"
+          formControlName="id"
+          class="mt-1 p-2 border rounded w-full"
+          readonly
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">User ID</label>
+        <input
+          type="text"
+          formControlName="userId"
+          class="mt-1 p-2 border rounded w-full"
+          readonly
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700"
+          >Total Amount</label
+        >
+        <input
+          type="text"
+          formControlName="total"
+          class="mt-1 p-2 border rounded w-full"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Status</label>
+        <input
+          type="text"
+          formControlName="status"
+          class="mt-1 p-2 border rounded w-full"
+        />
+      </div>
+      <div class="flex justify-end space-x-4">
+        <button
+          type="button"
+          class="bg-gray-500 text-white px-4 py-2 rounded"
+          (click)="onCloseModal()"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="bg-pink-500 text-white px-4 py-2 rounded"
+          (click)="onSubmit()"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

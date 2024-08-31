@@ -1,0 +1,49 @@
+<div class="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4 text-pink-600">Add Payment</h2>
+    <form>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <label class="block text-gray-700">User</label>
+          <input type="text" name="user" class="p-2 border rounded w-full" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Amount</label>
+          <input
+            type="number"
+            name="amount"
+            class="p-2 border rounded w-full"
+          />
+        </div>
+        <div class="col-span-2">
+          <label class="block text-gray-700">Status</label>
+          <select name="status" class="p-2 border rounded w-full">
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+            <option value="Failed">Failed</option>
+          </select>
+        </div>
+        <div class="col-span-2">
+          <label class="block text-gray-700">Upload Slip</label>
+          <input type="file" class="p-2 border rounded w-full" />
+          <img
+            [src]=""
+            alt="Payment Slip"
+            class="mt-4 w-32 h-32 object-cover"
+          />
+        </div>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded">
+          Save
+        </button>
+        <button
+          type="button"
+          class="ml-2 bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

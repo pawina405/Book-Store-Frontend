@@ -1,0 +1,84 @@
+<app-user-navbar></app-user-navbar>
+
+<main class="container mx-auto mt-6 p-4 bg-white shadow-md rounded-lg">
+  <h2 class="text-xl font-semibold mb-4">รายการสั่งซื้อของฉัน</h2>
+
+  <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+    <thead>
+      <tr class="bg-pink-500 text-white">
+        <th class="py-2 px-4 text-left">หมายเลขคำสั่งซื้อ</th>
+        <th class="py-2 px-4 text-left">วันที่</th>
+        <th class="py-2 px-4 text-left">สถานะ</th>
+        <th class="py-2 px-4 text-left">จำนวนเงิน</th>
+        <th class="py-2 px-4 text-left">รายละเอียด</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let order of Order">
+        <tr class="border-b hover:bg-gray-100 transition">
+          <td class="py-2 px-4">{{ order.id }}</td>
+          <td class="py-2 px-4">
+            {{ order.createDate | date : "dd/MM/yyyy" }}
+          </td>
+          <td class="py-2 px-4">{{ order.status }}</td>
+          <td class="py-2 px-4">{{ order.total }} บาท</td>
+          <td class="py-2 px-4">
+            <button
+              (click)="toggleDetails(order.id)"
+              class="text-blue-500 hover:underline"
+            >
+              ดูรายละเอียด
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="selectedOrderId === order.id" class="bg-gray-50">
+          <td colspan="5" class="p-4">
+            <div *ngIf="order.orderDetails && order.orderDetails.length">
+              <h3 class="text-lg font-semibold mb-2">รายละเอียดคำสั่งซื้อ:</h3>
+              <table
+                class="min-w-full bg-gray-100 border border-gray-200 rounded-lg"
+              >
+                <thead>
+                  <tr class="bg-gray-200 text-gray-700">
+                    <th class="py-2 px-4 text-left">รูปภาพ</th>
+                    <th class="py-2 px-4 text-left">รหัสสินค้า</th>
+                    <th class="py-2 px-4 text-left">จำนวน</th>
+                    <th class="py-2 px-4 text-left">ราคาต่อหน่วย</th>
+                    <th class="py-2 px-4 text-left">รวม</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let detail of order.orderDetails"
+                    class="border-b"
+                  >
+                    <td class="py-2 px-4">
+                      <img
+                        class="h-24"
+                        [src]="'data:image/png;base64,' + detail.img[0]"
+                        alt="product"
+                      />
+                      <span *ngIf="detail.img.length === 0">ไม่มีรูปภาพ</span>
+                    </td>
+                    <td class="py-2 px-4">{{ detail.productId }}</td>
+                    <td class="py-2 px-4">{{ detail.quantity }}</td>
+                    <td class="py-2 px-4">{{ detail.unitPrice }} บาท</td>
+                    <td class="py-2 px-4">
+                      {{ detail.unitPrice * detail.quantity }} บาท
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div
+              *ngIf="!order.orderDetails || !order.orderDetails.length"
+              class="text-gray-500 mt-2"
+            >
+              ไม่มีรายละเอียดคำสั่งซื้อ
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</main>

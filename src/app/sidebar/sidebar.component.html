@@ -1,0 +1,45 @@
+<div class="w-80 bg-gray-800 text-white h-screen p-4">
+  <div class="text-2xl font-bold mb-4">Admin Dashboard</div>
+  <ul>
+    <li class="mb-2">
+      <a
+        [routerLink]="['/admin/adminManageDashboard']"
+        class="block p-2 rounded hover:bg-pink-600"
+        >Dashboard</a
+      >
+    </li>
+    <li class="mb-2">
+      <a
+        [routerLink]="['/admin/adminManageProduct']"
+        class="block p-2 rounded hover:bg-pink-600"
+        >Products</a
+      >
+    </li>
+    <li class="mb-2">
+      <a
+        [routerLink]="['/admin/adminManageOrder']"
+        class="block p-2 rounded hover:bg-pink-600"
+        >Orders</a
+      >
+    </li>
+    <li class="mb-2">
+      <a
+        [routerLink]="['/admin/adminManageUser']"
+        class="block p-2 rounded hover:bg-pink-600"
+        >Users</a
+      >
+    </li>
+    <li class="mb-2">
+      <a
+        [routerLink]="['/admin/adminManagePayment']"
+        class="block p-2 rounded hover:bg-pink-600"
+        >Payment</a
+      >
+    </li>
+    <li class="mb-2">
+      <a (click)="logout()" class="block p-2 rounded hover:bg-pink-600"
+        >LogOut</a
+      >
+    </li>
+  </ul>
+</div>

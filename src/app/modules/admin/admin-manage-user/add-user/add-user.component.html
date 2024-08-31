@@ -1,0 +1,89 @@
+<div class="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4 text-pink-600">Add User</h2>
+    <form [formGroup]="registerForm">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <label class="block text-gray-700">firstName</label>
+          <input
+            type="text"
+            name="username"
+            class="p-2 border rounded w-full bg-white"
+            formControlName="firstName"
+          />
+        </div>
+        <div>
+          <label class="block text-gray-700">lastName</label>
+          <input
+            type="text"
+            name="username"
+            class="p-2 border rounded w-full bg-white"
+            formControlName="lastName"
+          />
+        </div>
+        <div>
+          <label class="block text-gray-700">Username</label>
+          <input
+            type="text"
+            name="username"
+            class="p-2 border rounded w-full bg-white"
+            formControlName="userName"
+          />
+        </div>
+        <div>
+          <label class="block text-gray-700">password</label>
+          <input
+            type="text"
+            name="username"
+            class="p-2 border rounded w-full bg-white"
+            formControlName="password"
+          />
+        </div>
+        <div>
+          <label class="block text-gray-700">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="p-2 border rounded w-full bg-white"
+            formControlName="email"
+          />
+        </div>
+        <div>
+          <label class="block text-gray-700">Address</label>
+          <input
+            type="text"
+            name="address"
+            class="p-2 border rounded w-full bg-white"
+            formControlName="address"
+          />
+        </div>
+        <!-- <div>
+          <label class="block text-gray-700">Role</label>
+          <select
+            name="role"
+            class="p-2 border rounded w-full bg-white"
+            formControlName="roleId"
+          >
+            <option value="Admin" class="bg-white">Admin</option>
+            <option value="User" class="bg-white">User</option>
+          </select>
+        </div> -->
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button
+          (click)="onSubmit()"
+          type="submit"
+          class="bg-pink-500 text-white px-4 py-2 rounded"
+        >
+          Save
+        </button>
+        <button
+          type="button"
+          class="ml-2 bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

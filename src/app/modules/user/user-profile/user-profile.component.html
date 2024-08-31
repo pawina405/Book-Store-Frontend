@@ -1,0 +1,66 @@
+<app-user-navbar></app-user-navbar>
+<div
+  class="max-w-lg mx-auto bg-gradient-to-b from-pink-300 via-gray-300 to-white p-6 rounded-lg shadow-lg relative"
+>
+  <svg
+    (click)="onEditUser()"
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-6 w-6 absolute top-2 right-2 text-pink-800 cursor-pointer"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M19.882,20H4.118A1.12,1.12,0,0,0,3,21.118v.764A1.12,1.12,0,0,0,4.118,23H19.882A1.12,1.12,0,0,0,21,21.882v-.764A1.12,1.12,0,0,0,19.882,20ZM20.964,4.379,19.621,3.036a2.372,2.372,0,0,0-3.354,0L5.826,13.476a.749.749,0,0,0-.186.313L4.009,18.258A.75.75,0,0,0,4.969,19.218l4.469-1.631a.748.748,0,0,0,.308-.191l10.44-10.44A2.372,2.372,0,0,0,20.964,4.379Zm-3.832,6.764L13.964,8.975,16.75,6.189l3.168,3.168Z"
+      clip-rule="evenodd"
+    />
+  </svg>
+
+  <h2 class="text-3xl font-bold mb-6 text-center text-pink-800">Profile</h2>
+  <ng-container *ngIf="user">
+    <div class="grid grid-cols-1 gap-4">
+      <div class="flex flex-col items-center mb-4">
+        <img
+          alt="User Avatar"
+          src="https://i.pinimg.com/564x/51/d6/91/51d6910f25e1f639582d89f9b045bb58.jpg"
+          class="rounded-full h-24 w-24 mb-4"
+        />
+        <p class="text-2xl font-semibold text-gray-500">
+          {{ user.firstName }} {{ user.lastName }}
+        </p>
+      </div>
+      <div>
+        <label for="email" class="block text-base font-medium text-pink-700"
+          >Email:</label
+        >
+        <p id="email" class="text-xl font-semibold text-gray-500">
+          {{ user.email }}
+        </p>
+      </div>
+      <div>
+        <label for="address" class="block text-base font-medium text-pink-700"
+          >Address:</label
+        >
+        <p id="address" class="text-xl font-semibold text-gray-500">
+          {{ user.address }}
+        </p>
+      </div>
+      <div>
+        <label for="username" class="block text-base font-medium text-pink-700"
+          >Username:</label
+        >
+        <p id="username" class="text-xl font-semibold text-gray-500">
+          {{ user.userName }}
+        </p>
+      </div>
+      <div>
+        <label for="password" class="block text-base font-medium text-pink-700"
+          >Password:</label
+        >
+        <p id="password" class="text-xl font-semibold text-gray-500">
+          {{ user.password }}
+        </p>
+      </div>
+    </div>
+  </ng-container>
+</div>

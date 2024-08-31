@@ -1,0 +1,87 @@
+<div class="p-4">
+  <div class="bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4 text-pink-600">Edit Payment</h2>
+    <form class="space-y-4" [formGroup]="formEditPayment">
+      <div>
+        <label class="block text-sm font-medium text-gray-700"
+          >Payment ID</label
+        >
+        <input
+          type="text"
+          formControlName="id"
+          class="mt-1 p-2 border rounded w-full"
+          readonly
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Order ID</label>
+        <input
+          type="text"
+          formControlName="orderId"
+          class="mt-1 p-2 border rounded w-full"
+          readonly
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Amount</label>
+        <input
+          type="text"
+          formControlName="paymentAmount"
+          class="mt-1 p-2 border rounded w-full"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700"
+          >ช่องทางชำระเงิน</label
+        >
+        <input
+          type="text"
+          formControlName="paymentMethod"
+          class="mt-1 p-2 border rounded w-full"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">สถานะ</label>
+        <input
+          type="text"
+          formControlName="status"
+          class="mt-1 p-2 border rounded w-full"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700"
+          >อนุมัติโดย</label
+        >
+        <input
+          type="text"
+          formControlName="approvedBy"
+          class="mt-1 p-2 border rounded w-full"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Slip</label>
+        <input
+          type="file"
+          formControlName="slip"
+          class="mt-1 p-2 border rounded w-full"
+        />
+      </div>
+      <div class="flex justify-end space-x-4">
+        <button
+          (click)="onCloseModal()"
+          type="button"
+          class="bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="bg-pink-500 text-white px-4 py-2 rounded"
+          (click)="onSubmit()"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
